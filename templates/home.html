@@ -20,7 +20,7 @@
            <h1>Type a movie to search info below:</h1>
 
            <br>
-            <form method="POST" action="">
+            <form method="GET" action="/search">
                 <h2>                    
                     Enter a movie name
                 </h2>
@@ -35,6 +35,7 @@
             </form>
             <br>
             
+            {% if movie_name is not empty %}
             <h2>{{ movie_name }}</h2>
             <div class="movie-results">
 
@@ -43,22 +44,34 @@
                     <div class="row">
                         <div class="col-12">
 
-                            <table class="table table-condensed">
-                                <tr>
-                                    <td>
-                                        wewe
-                                    </td>
-                                    <td>
-                                        wewe
-                                    </td>
-                                </tr>
-                            </table>
+                            {% if movie_info is empty %}
+                           
+                            Movie not found
+
+                            {% else %}
+
+                                <table class="table table-condensed">
+                                    {% for key,value in movie_info %}
+                                    <tr>
+                                        <td>                                        
+                                            {{ key }}
+                                        </td>
+                                        <td>                                        
+                                            {{ value }}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                            
+                            {% endif %}
                         </div>
                     </div>
 
                 </div>
 
             </div>
+                            
+            {% endif %}
        </main>
     </body>
 
